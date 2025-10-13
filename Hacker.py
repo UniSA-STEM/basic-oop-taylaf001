@@ -8,11 +8,8 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 class Hacker:
-    def __init__(self):
-        self.name = "Hackzilla"
-        self.tracelevel = 0
-
-    def inventory(self):
-        cryptotoken = 1
-
+    def __init__(self, rig):
+        self.__name = "Hackzilla"
+        self.__traceLevel = 0
+        self.__cryptoToken = 1
 

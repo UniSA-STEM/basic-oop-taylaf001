@@ -7,23 +7,21 @@ Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
-class Rig(self):
-    def__init__(self):
-        self.name = ""
-        self.damageCounter = 0
-        self.brokenState = False
-        self.upgradeLevel = 0
+class Rig:
+    def __init__(self):
+        self.__name = "Rigger"
+        self.__damageCounter = 0
+        self.__brokenState = False
+        self.__upgradeLevel = 0
     
     def storage(self):
-        dataSpikes = 2
-        removableDrive = 1
+        self.dataSpikes = 2
+        self.removableDrive = 1
     
     def repair(self):
         if damageCounter > 0:
-            damageCounter = 0
+            self.__damageCounter = 0
             self.brokenState = False
         else:
             print("No repair is needed.")
     
-    def upgrade(self):
-        hardwarePatch = 0
