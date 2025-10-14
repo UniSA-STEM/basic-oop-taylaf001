@@ -14,6 +14,26 @@ class Asset:
         self.__description = description
         self.__encrypted = encrypted
 
+    # Getters for attributes
+    def get_name(self):
+        return self.__name
+
+    def get_description(self):
+        return self.__description
+
+    def get_encrypted(self):
+        return self.__encrypted
+
+    # Setters for attributes
+    def set_name(self, name):
+        self.__name = name
+
+    def set_description(self, description):
+        self.__description = description
+
+    def set_encrypted(self, encrypted):
+        self.__encrypted = encrypted
+
     # String conversion method
     def __str__(self):
         if self.__encrypted == True:

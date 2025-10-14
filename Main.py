@@ -7,7 +7,7 @@ Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from Asset import Asset
-asset = Asset("CrypoToken", "Test", True)
-print(asset)
 
-
+def assetTest():
+    asset = Asset("CrypoToken", "Test", True)
+    print(asset)
