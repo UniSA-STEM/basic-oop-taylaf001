@@ -1,18 +1,22 @@
 """
 File: Asset.py
 Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
+Author: Tayla Fontanabella
+ID: Fonty005
+Username: taylaf001
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
+from rig import Rig
+from asset import Asset
 
+# Asset Class
 class Asset:
     def __init__(self, name, description, encrypted):
         self.__name = name
         self.__description = description
         self.__encrypted = encrypted
 
+    # String conversion method
     def __str__(self):
         self.conversion = ""
         if self.__encrypted == True:
@@ -23,3 +27,4 @@ class Asset:
             self.conversion = (f"{self.__name}:{self.__description}")
 
         return self.conversion
+

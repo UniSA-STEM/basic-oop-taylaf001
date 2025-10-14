@@ -8,9 +8,10 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from asset import Asset
 
+# Hacker Class
 class Hacker:
-    def __init__(self, rig):
+    def __init__(self):
         self.__name = "Hackzilla"
         self.__traceLevel = 0
-
+        self.__inventory = ("CryptoToken", "Used to acquire or repair rigs", False)
 
