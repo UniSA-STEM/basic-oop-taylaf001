@@ -6,7 +6,7 @@ ID: <student_id>
 Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-from asset import Asset
+
 
 # Rig Class
 class Rig:
@@ -15,7 +15,7 @@ class Rig:
         self.__damageCounter = 0
         self.__brokenState = False
         self.__upgradeLevel = 0
-        self.__storage = [Asset("Data Spike", "Used in Battles", False), Asset("Data Spike", "Used in Battles", False), Asset("Removable Drive", "FOund in rigs and used for extraction", False)]
+        self.__storage = [Asset("Data Spike", "Used in Battles", False), Asset("Data Spike", "Used in Battles", False), Asset("Removable Drive", "Found in rigs and used for extraction", False)]
 
 
     # Rig Upgrade Method

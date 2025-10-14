@@ -7,6 +7,7 @@ Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from asset import Asset
-from rig import Rig
-from hacker import Hacker
+asset = Asset("hi", "test", False)
+print(asset)
+
 

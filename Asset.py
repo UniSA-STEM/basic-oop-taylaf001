@@ -6,8 +6,6 @@ ID: Fonty005
 Username: taylaf001
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-from rig import Rig
-from asset import Asset
 
 # Asset Class
 class Asset:
@@ -18,13 +16,8 @@ class Asset:
 
     # String conversion method
     def __str__(self):
-        self.conversion = ""
-        if self.__encrypted == True:
-            self.conversion = (f"{self.__name}:{self.__description} [Encrypted]")
-        elif self.__encrypted == False:
-            self.conversion = (f"{self.__name}:{self.__description}")
-        elif self.__encrypted == "":
-            self.conversion = (f"{self.__name}:{self.__description}")
-
-        return self.conversion
+        if self.__encrypted:
+            return f"{self.__name}:{self.__description}[Encrypted]"
+        else:
+            return f"{self.__name}:{self.__description}"
 
