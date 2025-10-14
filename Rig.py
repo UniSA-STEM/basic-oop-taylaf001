@@ -7,7 +7,7 @@ Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
-
+import random
 # Rig Class
 class Rig:
     def __init__(self):
@@ -15,16 +15,25 @@ class Rig:
         self.__damageCounter = 0
         self.__brokenState = False
         self.__upgradeLevel = 0
+        self.__assetStorageAmount = 3
         self.__storage = [Asset("Data Spike", "Used in Battles", False), Asset("Data Spike", "Used in Battles", False), Asset("Removable Drive", "Found in rigs and used for extraction", False)]
 
 
     # Rig Upgrade Method
     def upgrade(self, asset):
+        if asset.name == "Hardware Patch":
+            self.__storage.remove(asset)
+            self.__upgradeLevel += 1
+            self.__assetStorageAmount += 1
+
+    # Rig asset generation method
+    def assetGeneration(self):
+
 
     # Rig Takes Damage Method
     def damageCounter(self):
         self.__damageCounter += 1
-        if self.__damageCounter == 2:
+        if self.__damageCounter == 2 and self.__upgradeLevel == 0:
             self.__brokenState = True
 
     # Method to repair rig
@@ -53,6 +62,7 @@ class Rig:
             self.conditionStr = "Pristine"
         elif self.__brokenState == True:
             self.conditionStr = "Broken"
+
         return f"{self.conditionStr} ({self.__upgradeLevel})"
 
     # String Conversion Method
