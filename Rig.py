@@ -8,6 +8,7 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 import random
+from Asset import Asset
 # Rig Class
 class Rig:
     def __init__(self):
@@ -26,8 +27,11 @@ class Rig:
             self.__upgradeLevel += 1
             self.__assetStorageAmount += 1
 
-    # Rig asset generation method
+    # Rig random asset generation method
     def assetGeneration(self):
+        assetPossibilities = [Asset("Hardware Patch", "Used to upgrade rigs.", False), Asset("Removable Drive", "Used in rigs and used for extraction", False), Asset("Data Spike", "Used in rigs and used for extraction", False), Asset("CryptoToken", "Used to acquire or repair rigs", False), Asset("Security Chip", "Used to encrypt or decrypt assets.", False)]
+        randomAsset = random.choice(assetPossibilities)
+        self.__storage.append(randomAsset)
 
 
     # Rig Takes Damage Method
@@ -40,7 +44,7 @@ class Rig:
     def repair(self):
         if self.__damageCounter > 0:
             self.__damageCounter = 0
-            self.brokenState = False
+            self.__brokenState = False
         else:
             print("No repair is needed.")
 
