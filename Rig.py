@@ -1,9 +1,9 @@
 """
 File: Rig.py
-Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
+Description: This python module represents a 'rig'. It includes a class and various private attributes utilised by the hacker class.
+Author: Tayla Fontanabella
+ID: Fonty005
+Username: taylaf001
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
