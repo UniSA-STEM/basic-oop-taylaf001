@@ -6,8 +6,8 @@ ID: <student_id>
 Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-from asset import Asset
-asset = Asset("hi", "test", False)
+from Asset import Asset
+asset = Asset("CrypoToken", "Test", True)
 print(asset)
 
 
