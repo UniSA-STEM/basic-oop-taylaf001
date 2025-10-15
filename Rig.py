@@ -67,7 +67,7 @@ class Rig:
             self.get_storage().remove(asset)
             self.set_upgradeLevel(self.get_upgradeLevel() + 1)
             self.set_assetStorageAmount(self.get_assetStorageAmount() + 1)
-            print(f"{asset.get_name()} upgraded to {self.get_upgradeLevel()}")
+            print(f"{self.get_name()} upgraded to level {self.get_upgradeLevel()}")
 
     # Rig random asset generation method
 
@@ -97,7 +97,9 @@ class Rig:
     # Method to store / add asset to rig
 
     def storeAsset(self, asset):
-        self.get_storage().append(asset)
+        assetStorage = self.get_storage()
+        assetStorage.append(asset)
+        self.set_storage(assetStorage)
 
     # Method releasing asset
 
@@ -125,4 +127,7 @@ class Rig:
     # String Conversion Method
 
     def __str__(self):
-        return f"{self.get_name()}, {conditionStr}, {self.get_upgradeLevel()}, {self.get_storage()}"
+        assetStr = ""
+        for asset in self.get_storage():
+            assetStr += str(asset) + "\n"
+        return f"Name: {self.get_name()} \nCondition: {self.condition()} \nUpgrade Level: {self.get_upgradeLevel()} \n------ \nAssets: \n{assetStr} "
