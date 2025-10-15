@@ -89,6 +89,7 @@ class Rig:
         if self.get_damageCounter() > 0 and asset.get_name() == "CryptoToken":
             self.set_damageCounter(0)
             self.set_brokenState(False)
+            print("Repair Successful.")
         elif self.get_damageCounter() > 0 and asset.get_name() != "CryptoToken":
             print("No valid asset inputted.")
         else:
@@ -104,14 +105,15 @@ class Rig:
     # Method releasing asset
 
     def releaseAsset(self, asset):
-        if asset in self.get_storage() and asset.get_encrypted() == False:
-            storage = self.get_storage()
-            storage.remove(asset)
-            self.set_storage(storage)
-        elif asset in self.get_storage() and asset.get_encrypted() == True:
-            print("Asset must be decrypted before transferring.")
-        elif asset not in self.get_storage():
-            print("Asset not found in storage.")
+        for storedAsset in self.get_storage():
+            if storedAsset.get_name() == asset.get_name() and asset.get_encrypted() == False:
+                self.get_storage().remove(storedAsset)
+                print("Asset released successfully.")
+            elif storedAsset.get_name() == asset.get_name() and asset.get_encrypted() == True:
+                print("Asset must be decrypted before transferring.")
+            elif storedAsset.get_name() != asset.get_name():
+                print("Asset not found in storage.")
+            return
 
     # Method returning rig's condition
 
@@ -121,8 +123,7 @@ class Rig:
             conditionStr = "Pristine"
         elif self.get_brokenState() == True:
             conditionStr = "Broken"
-
-        return f"{conditionStr} ({self.get_upgradeLevel()})"
+        return f"{conditionStr}(Level {self.get_upgradeLevel()})"
 
     # String Conversion Method
 
