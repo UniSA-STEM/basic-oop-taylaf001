@@ -9,6 +9,7 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 
 import random
 from Asset import Asset
+from Hacker import Hacker
 
 # Rig Class
 class Rig:
@@ -62,14 +63,12 @@ class Rig:
 
     # Rig Upgrade Method
 
-    def upgrade(self, asset):
-        for storedAsset in self.get_storage():
-             if storedAsset.get_name() == asset.get_name() and asset.get_name() == "Hardware Patch"
-                self.get_storage().remove(asset)
-                self.set_upgradeLevel(self.get_upgradeLevel() + 1)
-                self.set_assetStorageAmount(self.get_assetStorageAmount() + 1)
-                print(f"{self.get_name()} upgraded to level {self.get_upgradeLevel()}")
-                return
+    def upgrade(self):
+        self.set_upgradeLevel(self.get_upgradeLevel() + 1)
+        self.set_assetStorageAmount(self.get_assetStorageAmount() + 1)
+        print(f"{self.get_name()} upgraded to level {self.get_upgradeLevel()}")
+        return
+
     # Rig random asset generation method
     def assetGeneration(self):
         assetPossibilities = [Asset("Hardware Patch", "Used to upgrade rigs.", False), Asset("Removable Drive", "Used in rigs and used for extraction", False), Asset("Data Spike", "Used in rigs and used for extraction", False), Asset("CryptoToken", "Used to acquire or repair rigs", False), Asset("Security Chip", "Used to encrypt or decrypt assets.", False)]
