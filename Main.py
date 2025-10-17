@@ -8,6 +8,7 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from Asset import Asset
 from Rig import Rig
+from Hacker import Hacker
 
 
 # Function to ensure assets attributes are stored and displayed correctly in asset.py
@@ -15,11 +16,6 @@ from Rig import Rig
 def assetTest():
     asset = Asset("CryptoToken", "Test", False)
     print(asset)
-
-# Function to ensure attributes are stored and displayed correctly in rig.py
-
-def rigAttributeTest():
-    print(rig)
 
 # Function to test rig.py upgrade method
 
@@ -88,11 +84,65 @@ def releaseAssetTest():
 def rigConditionTest():
     print(f"{rig.condition()}")
 
-# Function to test string conversion method
+# Function to test string conversion method for rig
 
-def conversionTest():
+def rigAttributeTest():
     print(rig.__str__())
 
+# Function to test string conversion method for hacker
+
+def hackerAttributeTest():
+    print(hacker.__str__())
+
+# Function to test acquiring a rig
+
+def acquireRigTest():
+    hacker.acquireRig()
+
+# Function to test upgrading rig
+
+def upgradeRigTest():
+    hacker.upgradeRig()
+
+def encryptAssetTest(): # Encryption Test Function
+    asset = Asset("CryptoToken", "Used to acquire or repair rigs.", False)
+    rigOrHacker = "Rig"
+    hackerAttributeTest() # Check initial hacker details
+    acquireRigTest() # Acquire Rig
+    hackerAttributeTest() # Check rig has been successfully acquired
+    i = 0 #  generates random assets to assist in asset encryption provided a security chip is in storage
+    while i < 5:
+        hacker.get_rig().assetGeneration()
+        i += 1
+    hacker.encryptAsset(asset, rigOrHacker) # Check if encryption is successful
+
+def decryptAssetTest():
+    asset = Asset("CryptoToken", "Used to acquire or repair rigs.", False)
+    rigOrHacker = "Rig"
+    hackerAttributeTest()  # Check initial hacker details
+    acquireRigTest()  # Acquire Rig
+    hackerAttributeTest()  # Check rig has been successfully acquired
+    i = 0  # generates random assets to assist in asset encryption provided a security chip is in storage
+    while i < 5:
+        hacker.get_rig().assetGeneration()
+        i += 1
+    hacker.decryptAsset(asset, rigOrHacker)  # Check if encryption is successful
+
+def assetTransferTest():
+    hacker.assetTransfer()
+
+def assetRemovalTest():
+    hacker.assetRemovalScan()
+
+def launchAttackTest():
+    hacker.launchAttack()
+
 rig = Rig()
+hacker = Hacker()
+decryptAssetTest()
+
+
+
+
 
 

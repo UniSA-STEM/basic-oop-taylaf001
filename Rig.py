@@ -9,7 +9,6 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 
 import random
 from Asset import Asset
-from Hacker import Hacker
 
 # Rig Class
 class Rig:
@@ -74,6 +73,7 @@ class Rig:
         assetPossibilities = [Asset("Hardware Patch", "Used to upgrade rigs.", False), Asset("Removable Drive", "Used in rigs and used for extraction", False), Asset("Data Spike", "Used in rigs and used for extraction", False), Asset("CryptoToken", "Used to acquire or repair rigs", False), Asset("Security Chip", "Used to encrypt or decrypt assets.", False)]
         randomAsset = random.choice(assetPossibilities)
         self.get_storage().append(randomAsset)
+        print(f"Asset Generated: {randomAsset.get_name()}")
 
     # Rig Takes Damage Method
 
