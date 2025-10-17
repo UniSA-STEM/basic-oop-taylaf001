@@ -61,10 +61,10 @@ class Hacker:
 
     # Method for acquiring a rig
 
-    def acquireRig(self, asset):
+    def acquireRig(self):
         if self.get_rig() == False:
-            for storedAsset in self.get_inventory():
-                if storedAsset.get_name() == asset.get_name() and asset.get_name() == "CryptoToken":
+            for asset in self.get_inventory():
+                if asset.get_name() == "CryptoToken":
                     self.get_inventory().remove(asset)
                     self.set_rig(Rig)
                     print("Rig Acquired and Activated")
@@ -75,6 +75,7 @@ class Hacker:
             print("You have a rig. Cannot acquire a second rig.")
 
     # Method for upgrading rig
+
     def upgradeRig(self):
         hardwarePatch = False
         if self.get_rig():
@@ -84,21 +85,23 @@ class Hacker:
                     hardwarePatch = True
                     print("Hardware Patch detected in inventory")
                     self.get_inventory().remove(Asset)
-                    Rig.upgrade
+                    Rig.upgrade()
                 else:
                     print("Hardware Patch not found in inventory. Cannot upgrade")
         else:
             print("You have no rig. Cannot upgrade.")
 
 
-
     # Method for launching an attack with data spikes
+
     def launchAttack (self, targetRig):
         if self.get_exposure() == False:
             if self.get_rig():
-                # Put in remove asset here - need to develop other methods first
-                targetRig.damageCounter()
-                self.set_traceLevel(self.get_traceLevel()+1)
+                for asset in self.get_rig().get_storage():
+                    if asset.get_name() == " Data Spike":
+                        targetRig.damageCounter()
+                        self.set_traceLevel(self.get_traceLevel()+1)
+                        print("Attack successful.")
             else:
                 print("You have no rig to launch an attack with")
                 return
@@ -110,9 +113,9 @@ class Hacker:
     def encryptAsset(self, asset, rigOrHacker):
         rigOrHacker = rigOrHacker
         securityChip = False
-        Rig = self.get_rig()
 
         # Check for security Chip
+
         for Asset in self.get_inventory():
             if Asset.get_name() == "Security Chip":
                 securityChip = True
@@ -121,16 +124,17 @@ class Hacker:
             else:
                 print("Security Chip not found in inventory. Checking Rig.")
             return
-        for Asset in Rig.get_storage():
+        for Asset in self.get_rig().get_storage():
             if Asset.get_name() == "Security Chip":
                 securityChip = True
                 print("Security Chip detected in storage")
-                Rig.get_storage().remove(Asset)
+                self.get_rig().get_storage().remove(Asset)
             else:
                 print("Security Chip not found in storage or rig.")
             return
 
-        # Decrypt asset depending on whether its in the hacker inventory or rig storage
+        # Encrypt asset depending on whether its in the hacker inventory or rig storage
+
         if securityChip == True and rigOrHacker == "Hacker":
             for Asset in self.get_inventory():
                 if Asset.get_name() == asset:
@@ -140,7 +144,7 @@ class Hacker:
                     print("Asset not found in inventory")
                 return
         elif securityChip == True and rigOrHacker == "Rig":
-            for Asset in Rig.get_storage():
+            for Asset in self.get_name().get_storage():
                 if Asset.get_name() == asset:
                     Asset.set_encrypted(True)
                     print("Encryption Successful")
@@ -153,7 +157,6 @@ class Hacker:
     def decryptAsset (self, asset, rigOrHacker):
         rigOrHacker = rigOrHacker
         securityChip = False
-        Rig = self.get_rig()
 
         # Check for security Chip
         for Asset in self.get_inventory():
@@ -164,16 +167,17 @@ class Hacker:
             else:
                 print("Security Chip not found in inventory. Checking Rig.")
             return
-        for Asset in Rig.get_storage():
+        for Asset in self.get_rig().get_storage():
             if Asset.get_name() == "Security Chip":
                 securityChip = True
                 print("Security Chip detected in storage")
-                Rig.get_storage().remove(Asset)
+                self.get_rig().remove(Asset)
             else:
                 print("Security Chip not found in storage or rig.")
             return
 
         # Decrypt asset depending on whether its in the hacker inventory or rig storage
+
         if securityChip == True and rigOrHacker == "Hacker":
             for Asset in self.get_inventory():
                 if Asset.get_name() == asset:
@@ -183,7 +187,7 @@ class Hacker:
                     print("Asset not found in inventory")
                 return
         elif securityChip == True and rigOrHacker == "Rig":
-            for Asset in Rig.get_storage():
+            for Asset in self.get_rig().get_storage():
                 if Asset.get_name() == asset:
                     Asset.set_encrypted(False)
                     print("Decryption Successful")
@@ -192,13 +196,55 @@ class Hacker:
                 return
 
 
-    # Method for transferring assets from inventory to rig storage and vice versa
+    # Method for scanning for an asset and removing if found
 
-    def transferToStorage (self, asset):
+    def assetRemovalScan(self, asset):
+        for Asset in self.get_inventory():
+            if Asset.get_name() == asset:
+                print("Asset found. Removing Asset.")
+                self.get_inventory().remove(Asset)
+            return
 
-    # Method for retrieving assets from rig storage or inventory or vice versa
+    # Method for
+    def assetTransfer(self, asset, transferDestination):
+        asset = asset
+        transferDestination = transferDestination
+        assetStorageRig = self.get_rig().get_storage()
+        assetStorageHacker = self.get_inventory()
+        # Transfer all to rig
+        if transferDestination == "Rig" and asset == "All":
+            for Asset in self.get_inventory():
+                    self.get_inventory().remove(Asset)
+                    assetStorageRig.append(Asset)
+                    self.get_rig().set_storage(assetStorage)
+            return
+        # Transfer asset to rig
+        elif transferDestination == "Rig" and asset != "All":
+            for Asset in self.get_inventory():
+                if Asset.get_name() == asset:
+                    self.get_inventory().remove(Asset)
+                    assetStorageRig.append(Asset)
+                    self.get_rig().set_storage(assetStorage)
+            return
+        # Transfer all to Hacker
+        elif transferDestination == "Hacker" and asset == "All":
+            for Asset in self.get_rig().get_storage():
+                self.get_rig().get_storage().remove(Asset)
+                assetStorageHacker.append(Asset)
+                self.set_inventory(assetStorage)
+            return
 
-    def retrieveFromStorage (self, asset):
+        # Transfer asset to Hacker
+        elif transferDestination == "Hacker" and asset != "All":
+            for Asset in self.get_inventory():
+                if Asset.get_name() == asset:
+                    self.get_rig().get_storage().remove(Asset)
+                    assetStorageHacker.append(Asset)
+                    self.set_inventory(assetStorage)
+            return
+        else:
+            print("Transfer destination must be Hacker or Rig")
+
 
     # String Conversion Method
 
@@ -206,4 +252,4 @@ class Hacker:
         assetStr = ""
         for asset in self.get_inventory():
             assetStr += str(asset) + "\n"
-        return f"Name: {self.get_name()} \nRig Name: {rig.get_name()} \nTrace Level: {self.get_traceLevel()} \n------ \nInventory Contents: \n{assetStr} "
+        return f"Name: {self.get_name()} \nRig Name: {self.get_rig().get_name()} \nTrace Level: {self.get_traceLevel()} \n------ \nInventory Contents: \n{assetStr} "
