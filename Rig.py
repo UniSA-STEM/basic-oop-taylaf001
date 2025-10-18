@@ -65,7 +65,7 @@ class Rig:
     def upgrade(self):
         self.set_upgradeLevel(self.get_upgradeLevel() + 1)
         self.set_assetStorageAmount(self.get_assetStorageAmount() + 1)
-        print(f"{self.get_name()} upgraded to level {self.get_upgradeLevel()}")
+        print(f"{self.get_name()} upgraded to level {self.get_upgradeLevel()}. Storage increased by +1.")
         return
 
     # Rig random asset generation method
@@ -97,22 +97,22 @@ class Rig:
     # Method to store / add asset to rig
 
     def storeAsset(self, asset):
-        assetStorage = self.get_storage()
-        assetStorage.append(asset)
-        self.set_storage(assetStorage)
+        self.get_storage().append(asset)
 
     # Method releasing asset
 
-    def releaseAsset(self, asset):
+    def releaseAsset(self, asset, hacker):
         for storedAsset in self.get_storage():
-            if storedAsset.get_name() == asset.get_name() and asset.get_encrypted() == False:
+            if storedAsset.get_name() == asset.get_name() and storedAsset.get_encrypted() == False:
                 self.get_storage().remove(storedAsset)
-                print("Asset released successfully.")
-            elif storedAsset.get_name() == asset.get_name() and asset.get_encrypted() == True:
-                print("Asset must be decrypted before transferring.")
-            elif storedAsset.get_name() != asset.get_name():
-                print("Asset not found in storage.")
-            return
+                hacker.get_inventory().append(storedAsset)
+                return print(f"\nAsset '{storedAsset.get_name()}' transferred to Hacker's inventory successfully.\n")
+            elif storedAsset.get_name() == asset.get_name() and storedAsset.get_encrypted() == True:
+                print("Asset must be decrypted before transferring.\n")
+
+        if asset.get_name() not in self.get_storage():
+            print(f"\nAsset not found in storage.")
+
 
     # Method returning rig's condition
 
