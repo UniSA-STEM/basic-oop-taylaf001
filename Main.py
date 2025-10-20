@@ -6,7 +6,6 @@ ID: Fonty005
 Username: Taylaf001
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-import asset
 
 from Asset import Asset
 from Rig import Rig
