@@ -1,9 +1,9 @@
 """
 File: main.py
-Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
+Description: This module is used for testing methods within rig.py, hacker.py and asset.py
+Author: Tayla Fontanabella
+ID: Fonty005
+Username: Taylaf001
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 import asset

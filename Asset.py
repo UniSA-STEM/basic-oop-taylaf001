@@ -1,6 +1,6 @@
 """
 File: Asset.py
-Description: <A brief description of this Python module.>
+Description: This module contains Asset class and is used within rig.py and hacker.py for creating assets
 Author: Tayla Fontanabella
 ID: Fonty005
 Username: taylaf001

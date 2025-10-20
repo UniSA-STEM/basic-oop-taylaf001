@@ -1,9 +1,9 @@
 """
 File: Hacker.py
-Description: <A brief description of this Python module.>
+Description: Hacker.py contains a hacker class which is utilised within a game.
 Author: Tayla Fontanabella
 ID: Fonty005
-Username: <username>
+Username: Taylaf001
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from Asset import Asset
