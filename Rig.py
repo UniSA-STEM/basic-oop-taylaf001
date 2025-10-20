@@ -60,31 +60,24 @@ class Rig:
     def set_storage(self, storage):
         self.__storage = storage
 
-    # Rig Upgrade Method
-
-    def upgrade(self):
+    def upgrade(self): # Rig Upgrade Method
         self.set_upgradeLevel(self.get_upgradeLevel() + 1)
         self.set_assetStorageAmount(self.get_assetStorageAmount() + 1)
         print(f"{self.get_name()} upgraded to level {self.get_upgradeLevel()}. Storage increased by +1.")
         return
 
-    # Rig random asset generation method
-    def assetGeneration(self):
+    def assetGeneration(self): # Rig random asset generation method
         assetPossibilities = [Asset("Hardware Patch", "Used to upgrade rigs.", False), Asset("Removable Drive", "Used in rigs and used for extraction", False), Asset("Data Spike", "Used in rigs and used for extraction", False), Asset("CryptoToken", "Used to acquire or repair rigs", False), Asset("Security Chip", "Used to encrypt or decrypt assets.", False)]
         randomAsset = random.choice(assetPossibilities)
         self.get_storage().append(randomAsset)
         print(f"Asset Generated: {randomAsset.get_name()}")
 
-    # Rig Takes Damage Method
-
-    def damageCounter(self):
+    def damageCounter(self): # Rig Takes Damage Method
         self.set_damageCounter(self.get_damageCounter() + 1)
         if self.get_damageCounter() == 2 and self.get_upgradeLevel() == 0:
             self.set_brokenState(True)
 
-    # Method to repair rig
-
-    def repair(self, asset):
+    def repair(self, asset): # Method to repair rig
         if self.get_damageCounter() > 0 and asset.get_name() == "CryptoToken":
             self.set_damageCounter(0)
             self.set_brokenState(False)
@@ -94,14 +87,11 @@ class Rig:
         else:
             print("No repair is needed.")
 
-    # Method to store / add asset to rig
 
-    def storeAsset(self, asset):
+    def storeAsset(self, asset): # Method to store / add asset to rig
         self.get_storage().append(asset)
 
-    # Method releasing asset
-
-    def releaseAsset(self, asset, hacker):
+    def releaseAsset(self, asset, hacker): # Method releasing asset
         for storedAsset in self.get_storage():
             if storedAsset.get_name() == asset.get_name() and storedAsset.get_encrypted() == False:
                 self.get_storage().remove(storedAsset)
@@ -114,9 +104,7 @@ class Rig:
             print(f"\nAsset not found in storage.")
 
 
-    # Method returning rig's condition
-
-    def condition(self):
+    def condition(self): # Method returning rig's condition
         conditionStr = ""
         if self.get_brokenState() == False:
             conditionStr = "Pristine"
@@ -124,9 +112,7 @@ class Rig:
             conditionStr = "Broken"
         return f"{conditionStr}(Level {self.get_upgradeLevel()})"
 
-    # String Conversion Method
-
-    def __str__(self):
+    def __str__(self): # String Conversion Method
         assetStr = ""
         for asset in self.get_storage():
             assetStr += str(asset) + "\n"

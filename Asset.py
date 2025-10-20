@@ -34,8 +34,7 @@ class Asset:
     def set_encrypted(self, encrypted):
         self.__encrypted = encrypted
 
-    # String conversion method
-    def __str__(self):
+    def __str__(self): # String conversion method
         if self.__encrypted == True:
             return f"{self.__name}: {self.__description} - [Encrypted]"
         else:
